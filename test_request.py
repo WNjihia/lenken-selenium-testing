@@ -45,22 +45,22 @@ class TestSelenium(unittest.TestCase):
             "//div[@class='form-group'][3]/app-skills-dropdown/ul/li/button").click()
         driver.find_element_by_xpath(
             "//div[@class='form-group'][3]/app-skills-dropdown/ul/li/div/a[2]").click()
-        #set days to Monday
+        # set days to Monday
         driver.find_element_by_xpath(
             "//span[@class='checkbox-wrapper'][2]/label").click()
         modal = driver.find_element_by_class_name('mentor-request-modal')
         driver.execute_script("arguments[0].scrollBy(0, 1000);", modal)
-        #set time to 12:00 AM
+        # set time to 12:00 AM
         driver.find_element_by_css_selector(
             ".form-group:nth-child(7) > div:nth-child(1) > .mentor-dropdown > app-drop-down > ul > .dropdown > .request-option").click()
         driver.find_element_by_css_selector(
             ".form-group:nth-child(7) > div:nth-child(1) > .mentor-dropdown > app-drop-down > ul > .dropdown > div > a:nth-child(1)").click()
-        #set timezone to EAT
+        # set timezone to EAT
         driver.find_element_by_xpath(
             "//span[@id='timezone']/app-drop-down/ul/li/button").click()
         driver.find_element_by_xpath(
             "//span[@id='timezone']/app-drop-down/ul/li/div/a[2]").click()
-        #set session duration to 1hour
+        # set session duration to 1hour
         driver.find_element_by_xpath("//span[@value='-']").click()
         driver.find_element_by_id("btn-request").click()
         return skill
@@ -69,38 +69,28 @@ class TestSelenium(unittest.TestCase):
         driver = self.driver
         driver.find_element_by_class_name("white-button").click()
 
-    def delete_request(self):
-        driver = self.driver
-        driver.get("https://lenken.andela.com/request-pool")
-        driver.find_element_by_xpath("//div[@id='request-pool']/a[1]").click()
-        driver.find_element_by_xpath("//input[@class='button delete']").click()
-        driver.find_element_by_xpath("//div[@class='cancel-reason-box']").click()
-        driver.find_element_by_xpath("//div[@class='input-field']/div[@class='dropdown-content']/a[1]").click()
-        driver.find_element_by_xpath("//div[@class='cancel-options']/div[1]").click()
-        driver.find_element_by_xpath("//div[@class='cancel-options']/div[1]").click()
-
     def filter_request(self):
         # filter by location, duration, skillset
         driver = self.driver
-        #select seeking mentor
+        # select seeking mentor
         element = driver.find_element_by_css_selector(
             "app-pool-filters > div > form > .side-contents:nth-child(2) > .mentor")
         driver.execute_script("arguments[0].click();", element)
         element = driver.find_element_by_css_selector(
             "#location > .all-filters > div > .drop-toggle")
         driver.execute_script("arguments[0].click();", element)
-        #set location to Nairobi
+        # set location to Nairobi
         element = driver.find_element_by_css_selector(
             "#location > .all-filters > div > .drop-show > label:nth-child(3)")
         driver.execute_script("arguments[0].click();", element)
-        #set skill to Adobe Illustrator
+        # set skill to Adobe Illustrator
         element = driver.find_element_by_css_selector(
             "#skill-set > .all-filters > div > .drop-toggle")
         driver.execute_script("arguments[0].click();", element)
         element = driver.find_element_by_css_selector(
             "#skill-set > .all-filters > div > .drop-show > label:nth-child(1)")
         driver.execute_script("arguments[0].click();", element)
-        #set length to 1 month
+        # set length to 1 month
         element = driver.find_element_by_css_selector(
             "#length-filter > .all-filters > div > .drop-toggle")
         driver.execute_script("arguments[0].click();", element)
@@ -124,9 +114,11 @@ class TestSelenium(unittest.TestCase):
         element = driver.find_element_by_xpath(
             "//div[@class='pool-body']/a[1]/div[@id='primaryskill']")
         self.assertEqual(skill, element.text)
-        element = driver.find_element_by_xpath("//div[@class='pool-body']/a[1]/div[@id='duration']")
+        element = driver.find_element_by_xpath(
+            "//div[@class='pool-body']/a[1]/div[@id='duration']")
         assert "1 Month" in element.text
-        element = driver.find_element_by_xpath("//div[@class='pool-body']/a[1]/div[@id='request-location']")
+        element = driver.find_element_by_xpath(
+            "//div[@class='pool-body']/a[1]/div[@id='request-location']")
         assert "Nairobi" in element.text
 
     def tearDown(self):
