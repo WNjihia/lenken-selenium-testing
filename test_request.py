@@ -130,7 +130,6 @@ class TestSelenium(unittest.TestCase):
         assert "Nairobi" in element.text
 
     def tearDown(self):
-        # self.delete_request()
         self.driver.quit()
 
 
